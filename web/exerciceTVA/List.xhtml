@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListExerciceTVATitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListExerciceTVAEmpty}" rendered="#{exerciceTVAController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{exerciceTVAController.items.rowCount > 0}">
+                    <h:outputText value="#{exerciceTVAController.pagination.pageFirstItem + 1}..#{exerciceTVAController.pagination.pageLastItem + 1}/#{exerciceTVAController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{exerciceTVAController.previous}" value="#{bundle.Previous} #{exerciceTVAController.pagination.pageSize}" rendered="#{exerciceTVAController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{exerciceTVAController.next}" value="#{bundle.Next} #{exerciceTVAController.pagination.pageSize}" rendered="#{exerciceTVAController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{exerciceTVAController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceTVATitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceTVATitle_montant}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.montant}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceTVATitle_categorieTVA}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.categorieTVA}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceTVATitle_type}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.type}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceTVATitle_dateDebut}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateDebut}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceTVATitle_dateFin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{exerciceTVAController.prepareView}" value="#{bundle.ListExerciceTVAViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{exerciceTVAController.prepareEdit}" value="#{bundle.ListExerciceTVAEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{exerciceTVAController.destroy}" value="#{bundle.ListExerciceTVADestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{exerciceTVAController.prepareCreate}" value="#{bundle.ListExerciceTVACreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListExerciceTVAIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

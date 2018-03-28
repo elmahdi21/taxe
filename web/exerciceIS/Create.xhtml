@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateExerciceISTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateExerciceISLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{exerciceISController.selected.id}" title="#{bundle.CreateExerciceISTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateExerciceISLabel_dateDebut}" for="dateDebut" />
+                    <h:inputText id="dateDebut" value="#{exerciceISController.selected.dateDebut}" title="#{bundle.CreateExerciceISTitle_dateDebut}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateExerciceISLabel_dateFin}" for="dateFin" />
+                    <h:inputText id="dateFin" value="#{exerciceISController.selected.dateFin}" title="#{bundle.CreateExerciceISTitle_dateFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateExerciceISLabel_societe}" for="societe" />
+                    <h:selectOneMenu id="societe" value="#{exerciceISController.selected.societe}" title="#{bundle.CreateExerciceISTitle_societe}" >
+                        <f:selectItems value="#{societeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateExerciceISLabel_declarationIs}" for="declarationIs" />
+                    <h:selectOneMenu id="declarationIs" value="#{exerciceISController.selected.declarationIs}" title="#{bundle.CreateExerciceISTitle_declarationIs}" >
+                        <f:selectItems value="#{declarationIsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateExerciceISLabel_nFacture}" for="nFacture" />
+                    <h:inputText id="nFacture" value="#{exerciceISController.selected.nFacture}" title="#{bundle.CreateExerciceISTitle_nFacture}" />
+                    <h:outputLabel value="#{bundle.CreateExerciceISLabel_produits}" for="produits" />
+                    <h:inputText id="produits" value="#{exerciceISController.selected.produits}" title="#{bundle.CreateExerciceISTitle_produits}" />
+                    <h:outputLabel value="#{bundle.CreateExerciceISLabel_charges}" for="charges" />
+                    <h:inputText id="charges" value="#{exerciceISController.selected.charges}" title="#{bundle.CreateExerciceISTitle_charges}" />
+                    <h:outputLabel value="#{bundle.CreateExerciceISLabel_deductibles}" for="deductibles" />
+                    <h:inputText id="deductibles" value="#{exerciceISController.selected.deductibles}" title="#{bundle.CreateExerciceISTitle_deductibles}" />
+                    <h:outputLabel value="#{bundle.CreateExerciceISLabel_nonDeductibles}" for="nonDeductibles" />
+                    <h:inputText id="nonDeductibles" value="#{exerciceISController.selected.nonDeductibles}" title="#{bundle.CreateExerciceISTitle_nonDeductibles}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{exerciceISController.create}" value="#{bundle.CreateExerciceISSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{exerciceISController.prepareList}" value="#{bundle.CreateExerciceISShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateExerciceISIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

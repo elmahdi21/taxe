@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDgiTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDgiLabel_login}"/>
+                    <h:outputText value="#{dgiController.selected.login}" title="#{bundle.ViewDgiTitle_login}"/>
+                    <h:outputText value="#{bundle.ViewDgiLabel_password}"/>
+                    <h:outputText value="#{dgiController.selected.password}" title="#{bundle.ViewDgiTitle_password}"/>
+                    <h:outputText value="#{bundle.ViewDgiLabel_id}"/>
+                    <h:outputText value="#{dgiController.selected.id}" title="#{bundle.ViewDgiTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewDgiLabel_compteBanquaire}"/>
+                    <h:outputText value="#{dgiController.selected.compteBanquaire}" title="#{bundle.ViewDgiTitle_compteBanquaire}"/>
+                    <h:outputText value="#{bundle.ViewDgiLabel_societe}"/>
+                    <h:outputText value="#{dgiController.selected.societe}" title="#{bundle.ViewDgiTitle_societe}"/>
+                    <h:outputText value="#{bundle.ViewDgiLabel_email}"/>
+                    <h:outputText value="#{dgiController.selected.email}" title="#{bundle.ViewDgiTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewDgiLabel_passOfEmail}"/>
+                    <h:outputText value="#{dgiController.selected.passOfEmail}" title="#{bundle.ViewDgiTitle_passOfEmail}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{dgiController.destroyAndView}" value="#{bundle.ViewDgiDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDgiEditLink}"/>
+                <br />
+                <h:commandLink action="#{dgiController.prepareCreate}" value="#{bundle.ViewDgiCreateLink}" />
+                <br />
+                <h:commandLink action="#{dgiController.prepareList}" value="#{bundle.ViewDgiShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDgiIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

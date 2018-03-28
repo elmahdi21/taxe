@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDeclarationIsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDeclarationIsLabel_id}"/>
+                    <h:outputText value="#{declarationIsController.selected.id}" title="#{bundle.ViewDeclarationIsTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationIsLabel_dateDeclaration}"/>
+                    <h:outputText value="#{declarationIsController.selected.dateDeclaration}" title="#{bundle.ViewDeclarationIsTitle_dateDeclaration}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewDeclarationIsLabel_montantIs}"/>
+                    <h:outputText value="#{declarationIsController.selected.montantIs}" title="#{bundle.ViewDeclarationIsTitle_montantIs}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationIsLabel_etat}"/>
+                    <h:outputText value="#{declarationIsController.selected.etat}" title="#{bundle.ViewDeclarationIsTitle_etat}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationIsLabel_societe}"/>
+                    <h:outputText value="#{declarationIsController.selected.societe}" title="#{bundle.ViewDeclarationIsTitle_societe}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationIsLabel_tauxIs}"/>
+                    <h:outputText value="#{declarationIsController.selected.tauxIs}" title="#{bundle.ViewDeclarationIsTitle_tauxIs}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationIsLabel_resultatComptable}"/>
+                    <h:outputText value="#{declarationIsController.selected.resultatComptable}" title="#{bundle.ViewDeclarationIsTitle_resultatComptable}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationIsLabel_paiementIS}"/>
+                    <h:outputText value="#{declarationIsController.selected.paiementIS}" title="#{bundle.ViewDeclarationIsTitle_paiementIS}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationIsLabel_resultatFiscal}"/>
+                    <h:outputText value="#{declarationIsController.selected.resultatFiscal}" title="#{bundle.ViewDeclarationIsTitle_resultatFiscal}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationIsLabel_chiffreAffaire}"/>
+                    <h:outputText value="#{declarationIsController.selected.chiffreAffaire}" title="#{bundle.ViewDeclarationIsTitle_chiffreAffaire}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{declarationIsController.destroyAndView}" value="#{bundle.ViewDeclarationIsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDeclarationIsEditLink}"/>
+                <br />
+                <h:commandLink action="#{declarationIsController.prepareCreate}" value="#{bundle.ViewDeclarationIsCreateLink}" />
+                <br />
+                <h:commandLink action="#{declarationIsController.prepareList}" value="#{bundle.ViewDeclarationIsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDeclarationIsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

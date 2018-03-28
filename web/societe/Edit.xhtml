@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSocieteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSocieteLabel_idFiscal}" for="idFiscal" />
+                    <h:inputText id="idFiscal" value="#{societeController.selected.idFiscal}" title="#{bundle.EditSocieteTitle_idFiscal}" />
+                    <h:outputLabel value="#{bundle.EditSocieteLabel_raisonSociale}" for="raisonSociale" />
+                    <h:inputText id="raisonSociale" value="#{societeController.selected.raisonSociale}" title="#{bundle.EditSocieteTitle_raisonSociale}" />
+                    <h:outputLabel value="#{bundle.EditSocieteLabel_numTele}" for="numTele" />
+                    <h:inputText id="numTele" value="#{societeController.selected.numTele}" title="#{bundle.EditSocieteTitle_numTele}" />
+                    <h:outputLabel value="#{bundle.EditSocieteLabel_numFix}" for="numFix" />
+                    <h:inputText id="numFix" value="#{societeController.selected.numFix}" title="#{bundle.EditSocieteTitle_numFix}" />
+                    <h:outputLabel value="#{bundle.EditSocieteLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{societeController.selected.email}" title="#{bundle.EditSocieteTitle_email}" />
+                    <h:outputLabel value="#{bundle.EditSocieteLabel_dateCreation}" for="dateCreation" />
+                    <h:inputText id="dateCreation" value="#{societeController.selected.dateCreation}" title="#{bundle.EditSocieteTitle_dateCreation}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditSocieteLabel_deficit}" for="deficit" />
+                    <h:inputText id="deficit" value="#{societeController.selected.deficit}" title="#{bundle.EditSocieteTitle_deficit}" />
+                    <h:outputLabel value="#{bundle.EditSocieteLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{societeController.selected.password}" title="#{bundle.EditSocieteTitle_password}" />
+                </h:panelGrid>
+                <h:commandLink action="#{societeController.update}" value="#{bundle.EditSocieteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSocieteViewLink}"/>
+                <br />
+                <h:commandLink action="#{societeController.prepareList}" value="#{bundle.EditSocieteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditSocieteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

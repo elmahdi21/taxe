@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPenaliteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPenaliteLabel_id}"/>
+                    <h:outputText value="#{penaliteController.selected.id}" title="#{bundle.ViewPenaliteTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewPenaliteLabel_societe}"/>
+                    <h:outputText value="#{penaliteController.selected.societe}" title="#{bundle.ViewPenaliteTitle_societe}"/>
+                    <h:outputText value="#{bundle.ViewPenaliteLabel_dateDernierDeclaration}"/>
+                    <h:outputText value="#{penaliteController.selected.dateDernierDeclaration}" title="#{bundle.ViewPenaliteTitle_dateDernierDeclaration}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPenaliteLabel_montantPenalite}"/>
+                    <h:outputText value="#{penaliteController.selected.montantPenalite}" title="#{bundle.ViewPenaliteTitle_montantPenalite}"/>
+                    <h:outputText value="#{bundle.ViewPenaliteLabel_taux}"/>
+                    <h:outputText value="#{penaliteController.selected.taux}" title="#{bundle.ViewPenaliteTitle_taux}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{penaliteController.destroyAndView}" value="#{bundle.ViewPenaliteDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPenaliteEditLink}"/>
+                <br />
+                <h:commandLink action="#{penaliteController.prepareCreate}" value="#{bundle.ViewPenaliteCreateLink}" />
+                <br />
+                <h:commandLink action="#{penaliteController.prepareList}" value="#{bundle.ViewPenaliteShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPenaliteIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDgiTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDgiLabel_login}" for="login" />
+                    <h:inputText id="login" value="#{dgiController.selected.login}" title="#{bundle.CreateDgiTitle_login}" />
+                    <h:outputLabel value="#{bundle.CreateDgiLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{dgiController.selected.password}" title="#{bundle.CreateDgiTitle_password}" />
+                    <h:outputLabel value="#{bundle.CreateDgiLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{dgiController.selected.id}" title="#{bundle.CreateDgiTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateDgiLabel_compteBanquaire}" for="compteBanquaire" />
+                    <h:selectOneMenu id="compteBanquaire" value="#{dgiController.selected.compteBanquaire}" title="#{bundle.CreateDgiTitle_compteBanquaire}" >
+                        <f:selectItems value="#{compteBanquaireController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDgiLabel_societe}" for="societe" />
+                    <h:selectOneMenu id="societe" value="#{dgiController.selected.societe}" title="#{bundle.CreateDgiTitle_societe}" >
+                        <f:selectItems value="#{societeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDgiLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{dgiController.selected.email}" title="#{bundle.CreateDgiTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreateDgiLabel_passOfEmail}" for="passOfEmail" />
+                    <h:inputText id="passOfEmail" value="#{dgiController.selected.passOfEmail}" title="#{bundle.CreateDgiTitle_passOfEmail}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{dgiController.create}" value="#{bundle.CreateDgiSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{dgiController.prepareList}" value="#{bundle.CreateDgiShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDgiIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

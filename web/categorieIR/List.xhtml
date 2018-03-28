@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCategorieIRTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCategorieIREmpty}" rendered="#{categorieIRController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{categorieIRController.items.rowCount > 0}">
+                    <h:outputText value="#{categorieIRController.pagination.pageFirstItem + 1}..#{categorieIRController.pagination.pageLastItem + 1}/#{categorieIRController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{categorieIRController.previous}" value="#{bundle.Previous} #{categorieIRController.pagination.pageSize}" rendered="#{categorieIRController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{categorieIRController.next}" value="#{bundle.Next} #{categorieIRController.pagination.pageSize}" rendered="#{categorieIRController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{categorieIRController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategorieIRTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategorieIRTitle_salaireMini}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.salaireMini}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategorieIRTitle_salaireMaxi}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.salaireMaxi}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategorieIRTitle_taux}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.taux}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{categorieIRController.prepareView}" value="#{bundle.ListCategorieIRViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{categorieIRController.prepareEdit}" value="#{bundle.ListCategorieIREditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{categorieIRController.destroy}" value="#{bundle.ListCategorieIRDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{categorieIRController.prepareCreate}" value="#{bundle.ListCategorieIRCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCategorieIRIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

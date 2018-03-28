@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewExerciceTVATitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewExerciceTVALabel_id}"/>
+                    <h:outputText value="#{exerciceTVAController.selected.id}" title="#{bundle.ViewExerciceTVATitle_id}"/>
+                    <h:outputText value="#{bundle.ViewExerciceTVALabel_montant}"/>
+                    <h:outputText value="#{exerciceTVAController.selected.montant}" title="#{bundle.ViewExerciceTVATitle_montant}"/>
+                    <h:outputText value="#{bundle.ViewExerciceTVALabel_categorieTVA}"/>
+                    <h:outputText value="#{exerciceTVAController.selected.categorieTVA}" title="#{bundle.ViewExerciceTVATitle_categorieTVA}"/>
+                    <h:outputText value="#{bundle.ViewExerciceTVALabel_type}"/>
+                    <h:outputText value="#{exerciceTVAController.selected.type}" title="#{bundle.ViewExerciceTVATitle_type}"/>
+                    <h:outputText value="#{bundle.ViewExerciceTVALabel_dateDebut}"/>
+                    <h:outputText value="#{exerciceTVAController.selected.dateDebut}" title="#{bundle.ViewExerciceTVATitle_dateDebut}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewExerciceTVALabel_dateFin}"/>
+                    <h:outputText value="#{exerciceTVAController.selected.dateFin}" title="#{bundle.ViewExerciceTVATitle_dateFin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{exerciceTVAController.destroyAndView}" value="#{bundle.ViewExerciceTVADestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewExerciceTVAEditLink}"/>
+                <br />
+                <h:commandLink action="#{exerciceTVAController.prepareCreate}" value="#{bundle.ViewExerciceTVACreateLink}" />
+                <br />
+                <h:commandLink action="#{exerciceTVAController.prepareList}" value="#{bundle.ViewExerciceTVAShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewExerciceTVAIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

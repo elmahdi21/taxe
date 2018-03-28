@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEmployeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEmployeLabel_trancheIr}"/>
+                    <h:outputText value="#{employeController.selected.trancheIr}" title="#{bundle.ViewEmployeTitle_trancheIr}"/>
+                    <h:outputText value="#{bundle.ViewEmployeLabel_typeTranche}"/>
+                    <h:outputText value="#{employeController.selected.typeTranche}" title="#{bundle.ViewEmployeTitle_typeTranche}"/>
+                    <h:outputText value="#{bundle.ViewEmployeLabel_salaireMensuel}"/>
+                    <h:outputText value="#{employeController.selected.salaireMensuel}" title="#{bundle.ViewEmployeTitle_salaireMensuel}"/>
+                    <h:outputText value="#{bundle.ViewEmployeLabel_salaireBrute}"/>
+                    <h:outputText value="#{employeController.selected.salaireBrute}" title="#{bundle.ViewEmployeTitle_salaireBrute}"/>
+                    <h:outputText value="#{bundle.ViewEmployeLabel_banquaireEmp}"/>
+                    <h:outputText value="#{employeController.selected.banquaireEmp}" title="#{bundle.ViewEmployeTitle_banquaireEmp}"/>
+                    <h:outputText value="#{bundle.ViewEmployeLabel_nom}"/>
+                    <h:outputText value="#{employeController.selected.nom}" title="#{bundle.ViewEmployeTitle_nom}"/>
+                    <h:outputText value="#{bundle.ViewEmployeLabel_pNom}"/>
+                    <h:outputText value="#{employeController.selected.pNom}" title="#{bundle.ViewEmployeTitle_pNom}"/>
+                    <h:outputText value="#{bundle.ViewEmployeLabel_CIN}"/>
+                    <h:outputText value="#{employeController.selected.CIN}" title="#{bundle.ViewEmployeTitle_CIN}"/>
+                    <h:outputText value="#{bundle.ViewEmployeLabel_numTele}"/>
+                    <h:outputText value="#{employeController.selected.numTele}" title="#{bundle.ViewEmployeTitle_numTele}"/>
+                    <h:outputText value="#{bundle.ViewEmployeLabel_email}"/>
+                    <h:outputText value="#{employeController.selected.email}" title="#{bundle.ViewEmployeTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewEmployeLabel_profession}"/>
+                    <h:outputText value="#{employeController.selected.profession}" title="#{bundle.ViewEmployeTitle_profession}"/>
+                    <h:outputText value="#{bundle.ViewEmployeLabel_idFiscale}"/>
+                    <h:outputText value="#{employeController.selected.idFiscale}" title="#{bundle.ViewEmployeTitle_idFiscale}"/>
+                    <h:outputText value="#{bundle.ViewEmployeLabel_societe}"/>
+                    <h:outputText value="#{employeController.selected.societe}" title="#{bundle.ViewEmployeTitle_societe}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{employeController.destroyAndView}" value="#{bundle.ViewEmployeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEmployeEditLink}"/>
+                <br />
+                <h:commandLink action="#{employeController.prepareCreate}" value="#{bundle.ViewEmployeCreateLink}" />
+                <br />
+                <h:commandLink action="#{employeController.prepareList}" value="#{bundle.ViewEmployeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEmployeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

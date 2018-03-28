@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCategorieIRTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCategorieIRLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{categorieIRController.selected.id}" title="#{bundle.EditCategorieIRTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditCategorieIRLabel_salaireMini}" for="salaireMini" />
+                    <h:inputText id="salaireMini" value="#{categorieIRController.selected.salaireMini}" title="#{bundle.EditCategorieIRTitle_salaireMini}" />
+                    <h:outputLabel value="#{bundle.EditCategorieIRLabel_salaireMaxi}" for="salaireMaxi" />
+                    <h:inputText id="salaireMaxi" value="#{categorieIRController.selected.salaireMaxi}" title="#{bundle.EditCategorieIRTitle_salaireMaxi}" />
+                    <h:outputLabel value="#{bundle.EditCategorieIRLabel_taux}" for="taux" />
+                    <h:inputText id="taux" value="#{categorieIRController.selected.taux}" title="#{bundle.EditCategorieIRTitle_taux}" />
+                </h:panelGrid>
+                <h:commandLink action="#{categorieIRController.update}" value="#{bundle.EditCategorieIRSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCategorieIRViewLink}"/>
+                <br />
+                <h:commandLink action="#{categorieIRController.prepareList}" value="#{bundle.EditCategorieIRShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCategorieIRIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

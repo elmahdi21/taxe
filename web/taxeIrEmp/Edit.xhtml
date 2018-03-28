@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTaxeIrEmployeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTaxeIrEmployeLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{taxeIrEmployeController.selected.id}" title="#{bundle.EditTaxeIrEmployeTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditTaxeIrEmployeLabel_declarationIr}" for="declarationIr" />
+                    <h:selectOneMenu id="declarationIr" value="#{taxeIrEmployeController.selected.declarationIr}" title="#{bundle.EditTaxeIrEmployeTitle_declarationIr}" >
+                        <f:selectItems value="#{declarationIrController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTaxeIrEmployeLabel_employe}" for="employe" />
+                    <h:selectOneMenu id="employe" value="#{taxeIrEmployeController.selected.employe}" title="#{bundle.EditTaxeIrEmployeTitle_employe}" >
+                        <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTaxeIrEmployeLabel_categorieIR}" for="categorieIR" />
+                    <h:selectOneMenu id="categorieIR" value="#{taxeIrEmployeController.selected.categorieIR}" title="#{bundle.EditTaxeIrEmployeTitle_categorieIR}" >
+                        <f:selectItems value="#{categorieIRController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTaxeIrEmployeLabel_montantIr}" for="montantIr" />
+                    <h:inputText id="montantIr" value="#{taxeIrEmployeController.selected.montantIr}" title="#{bundle.EditTaxeIrEmployeTitle_montantIr}" />
+                </h:panelGrid>
+                <h:commandLink action="#{taxeIrEmployeController.update}" value="#{bundle.EditTaxeIrEmployeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTaxeIrEmployeViewLink}"/>
+                <br />
+                <h:commandLink action="#{taxeIrEmployeController.prepareList}" value="#{bundle.EditTaxeIrEmployeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTaxeIrEmployeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

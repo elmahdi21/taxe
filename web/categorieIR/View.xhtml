@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCategorieIRTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCategorieIRLabel_id}"/>
+                    <h:outputText value="#{categorieIRController.selected.id}" title="#{bundle.ViewCategorieIRTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCategorieIRLabel_salaireMini}"/>
+                    <h:outputText value="#{categorieIRController.selected.salaireMini}" title="#{bundle.ViewCategorieIRTitle_salaireMini}"/>
+                    <h:outputText value="#{bundle.ViewCategorieIRLabel_salaireMaxi}"/>
+                    <h:outputText value="#{categorieIRController.selected.salaireMaxi}" title="#{bundle.ViewCategorieIRTitle_salaireMaxi}"/>
+                    <h:outputText value="#{bundle.ViewCategorieIRLabel_taux}"/>
+                    <h:outputText value="#{categorieIRController.selected.taux}" title="#{bundle.ViewCategorieIRTitle_taux}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{categorieIRController.destroyAndView}" value="#{bundle.ViewCategorieIRDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCategorieIREditLink}"/>
+                <br />
+                <h:commandLink action="#{categorieIRController.prepareCreate}" value="#{bundle.ViewCategorieIRCreateLink}" />
+                <br />
+                <h:commandLink action="#{categorieIRController.prepareList}" value="#{bundle.ViewCategorieIRShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCategorieIRIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

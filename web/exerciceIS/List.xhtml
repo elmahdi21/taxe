@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListExerciceISTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListExerciceISEmpty}" rendered="#{exerciceISController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{exerciceISController.items.rowCount > 0}">
+                    <h:outputText value="#{exerciceISController.pagination.pageFirstItem + 1}..#{exerciceISController.pagination.pageLastItem + 1}/#{exerciceISController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{exerciceISController.previous}" value="#{bundle.Previous} #{exerciceISController.pagination.pageSize}" rendered="#{exerciceISController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{exerciceISController.next}" value="#{bundle.Next} #{exerciceISController.pagination.pageSize}" rendered="#{exerciceISController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{exerciceISController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceISTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceISTitle_dateDebut}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateDebut}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceISTitle_dateFin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceISTitle_societe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.societe}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceISTitle_declarationIs}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.declarationIs}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceISTitle_nFacture}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nFacture}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceISTitle_produits}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.produits}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceISTitle_charges}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.charges}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceISTitle_deductibles}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deductibles}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExerciceISTitle_nonDeductibles}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nonDeductibles}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{exerciceISController.prepareView}" value="#{bundle.ListExerciceISViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{exerciceISController.prepareEdit}" value="#{bundle.ListExerciceISEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{exerciceISController.destroy}" value="#{bundle.ListExerciceISDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{exerciceISController.prepareCreate}" value="#{bundle.ListExerciceISCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListExerciceISIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

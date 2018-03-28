@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDeclarationTvaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDeclarationTvaLabel_dateCreation}"/>
+                    <h:outputText value="#{declarationTvaController.selected.dateCreation}" title="#{bundle.ViewDeclarationTvaTitle_dateCreation}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewDeclarationTvaLabel_utilisateur}"/>
+                    <h:outputText value="#{declarationTvaController.selected.utilisateur}" title="#{bundle.ViewDeclarationTvaTitle_utilisateur}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationTvaLabel_periode}"/>
+                    <h:outputText value="#{declarationTvaController.selected.periode}" title="#{bundle.ViewDeclarationTvaTitle_periode}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationTvaLabel_annee}"/>
+                    <h:outputText value="#{declarationTvaController.selected.annee}" title="#{bundle.ViewDeclarationTvaTitle_annee}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationTvaLabel_taxeDue}"/>
+                    <h:outputText value="#{declarationTvaController.selected.taxeDue}" title="#{bundle.ViewDeclarationTvaTitle_taxeDue}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationTvaLabel_taxeDeductible}"/>
+                    <h:outputText value="#{declarationTvaController.selected.taxeDeductible}" title="#{bundle.ViewDeclarationTvaTitle_taxeDeductible}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationTvaLabel_taxeAverser}"/>
+                    <h:outputText value="#{declarationTvaController.selected.taxeAverser}" title="#{bundle.ViewDeclarationTvaTitle_taxeAverser}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationTvaLabel_taxeAreporter}"/>
+                    <h:outputText value="#{declarationTvaController.selected.taxeAreporter}" title="#{bundle.ViewDeclarationTvaTitle_taxeAreporter}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationTvaLabel_id}"/>
+                    <h:outputText value="#{declarationTvaController.selected.id}" title="#{bundle.ViewDeclarationTvaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationTvaLabel_type}"/>
+                    <h:outputText value="#{declarationTvaController.selected.type}" title="#{bundle.ViewDeclarationTvaTitle_type}"/>
+                    <h:outputText value="#{bundle.ViewDeclarationTvaLabel_societe}"/>
+                    <h:outputText value="#{declarationTvaController.selected.societe}" title="#{bundle.ViewDeclarationTvaTitle_societe}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{declarationTvaController.destroyAndView}" value="#{bundle.ViewDeclarationTvaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDeclarationTvaEditLink}"/>
+                <br />
+                <h:commandLink action="#{declarationTvaController.prepareCreate}" value="#{bundle.ViewDeclarationTvaCreateLink}" />
+                <br />
+                <h:commandLink action="#{declarationTvaController.prepareList}" value="#{bundle.ViewDeclarationTvaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDeclarationTvaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

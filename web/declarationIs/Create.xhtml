@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDeclarationIsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDeclarationIsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{declarationIsController.selected.id}" title="#{bundle.CreateDeclarationIsTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateDeclarationIsLabel_dateDeclaration}" for="dateDeclaration" />
+                    <h:inputText id="dateDeclaration" value="#{declarationIsController.selected.dateDeclaration}" title="#{bundle.CreateDeclarationIsTitle_dateDeclaration}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateDeclarationIsLabel_montantIs}" for="montantIs" />
+                    <h:inputText id="montantIs" value="#{declarationIsController.selected.montantIs}" title="#{bundle.CreateDeclarationIsTitle_montantIs}" />
+                    <h:outputLabel value="#{bundle.CreateDeclarationIsLabel_etat}" for="etat" />
+                    <h:inputText id="etat" value="#{declarationIsController.selected.etat}" title="#{bundle.CreateDeclarationIsTitle_etat}" />
+                    <h:outputLabel value="#{bundle.CreateDeclarationIsLabel_societe}" for="societe" />
+                    <h:selectOneMenu id="societe" value="#{declarationIsController.selected.societe}" title="#{bundle.CreateDeclarationIsTitle_societe}" >
+                        <f:selectItems value="#{societeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDeclarationIsLabel_tauxIs}" for="tauxIs" />
+                    <h:inputText id="tauxIs" value="#{declarationIsController.selected.tauxIs}" title="#{bundle.CreateDeclarationIsTitle_tauxIs}" />
+                    <h:outputLabel value="#{bundle.CreateDeclarationIsLabel_resultatComptable}" for="resultatComptable" />
+                    <h:inputText id="resultatComptable" value="#{declarationIsController.selected.resultatComptable}" title="#{bundle.CreateDeclarationIsTitle_resultatComptable}" />
+                    <h:outputLabel value="#{bundle.CreateDeclarationIsLabel_paiementIS}" for="paiementIS" />
+                    <h:selectOneMenu id="paiementIS" value="#{declarationIsController.selected.paiementIS}" title="#{bundle.CreateDeclarationIsTitle_paiementIS}" >
+                        <f:selectItems value="#{paiementISController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDeclarationIsLabel_resultatFiscal}" for="resultatFiscal" />
+                    <h:inputText id="resultatFiscal" value="#{declarationIsController.selected.resultatFiscal}" title="#{bundle.CreateDeclarationIsTitle_resultatFiscal}" />
+                    <h:outputLabel value="#{bundle.CreateDeclarationIsLabel_chiffreAffaire}" for="chiffreAffaire" />
+                    <h:inputText id="chiffreAffaire" value="#{declarationIsController.selected.chiffreAffaire}" title="#{bundle.CreateDeclarationIsTitle_chiffreAffaire}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{declarationIsController.create}" value="#{bundle.CreateDeclarationIsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{declarationIsController.prepareList}" value="#{bundle.CreateDeclarationIsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDeclarationIsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

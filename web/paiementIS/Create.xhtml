@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePaiementISTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePaiementISLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{paiementISController.selected.id}" title="#{bundle.CreatePaiementISTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreatePaiementISLabel_montant}" for="montant" />
+                    <h:inputText id="montant" value="#{paiementISController.selected.montant}" title="#{bundle.CreatePaiementISTitle_montant}" />
+                    <h:outputLabel value="#{bundle.CreatePaiementISLabel_datePaiement}" for="datePaiement" />
+                    <h:inputText id="datePaiement" value="#{paiementISController.selected.datePaiement}" title="#{bundle.CreatePaiementISTitle_datePaiement}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePaiementISLabel_accompteVerse}" for="accompteVerse" />
+                    <h:inputText id="accompteVerse" value="#{paiementISController.selected.accompteVerse}" title="#{bundle.CreatePaiementISTitle_accompteVerse}" />
+                    <h:outputLabel value="#{bundle.CreatePaiementISLabel_declarationIs}" for="declarationIs" />
+                    <h:selectOneMenu id="declarationIs" value="#{paiementISController.selected.declarationIs}" title="#{bundle.CreatePaiementISTitle_declarationIs}" >
+                        <f:selectItems value="#{declarationIsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePaiementISLabel_dateDernierDelai}" for="dateDernierDelai" />
+                    <h:inputText id="dateDernierDelai" value="#{paiementISController.selected.dateDernierDelai}" title="#{bundle.CreatePaiementISTitle_dateDernierDelai}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{paiementISController.create}" value="#{bundle.CreatePaiementISSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{paiementISController.prepareList}" value="#{bundle.CreatePaiementISShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePaiementISIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
