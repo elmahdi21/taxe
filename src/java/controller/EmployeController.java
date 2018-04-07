@@ -9,7 +9,6 @@ import service.EmployeFacade;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -18,30 +17,35 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
 
 @Named("employeController")
 @SessionScoped
 public class EmployeController implements Serializable {
 
-    private Employe current;
+    private Employe selected;
     private Societe societe;
     private DataModel items = null;
     @EJB
-    private service.EmployeFacade ejbFacade;
+    private EmployeFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public void trancheEmp() {
-        ejbFacade.trancheEmp(societe.getIdFiscal());
-        
+    
+    public void taxeIrEmp(){
+        ejbFacade.taxeIrEmp(societe.getIdFiscal());
     }
 
-    public Employe getCurrent() {
-        return current;
+    public Employe getSelected() {
+        if (selected == null) {
+            selected = new Employe();
+        }
+
+        return selected;
     }
 
-    public void setCurrent(Employe current) {
-        this.current = current;
+    public void setSelected(Employe selected) {
+        this.selected = selected;
     }
 
     public Societe getSociete() {
@@ -77,13 +81,13 @@ public class EmployeController implements Serializable {
     public EmployeController() {
     }
 
-    public Employe getSelected() {
-        if (current == null) {
-            current = new Employe();
-            selectedItemIndex = -1;
-        }
-        return current;
-    }
+//    public Employe getSelected() {
+//        if (selected == null) {
+//            selected = new Employe();
+//            selectedItemIndex = -1;
+//        }
+//        return selected;
+//    }
 
     private EmployeFacade getFacade() {
         return ejbFacade;
@@ -113,20 +117,20 @@ public class EmployeController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Employe) getItems().getRowData();
+        selected = (Employe) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Employe();
+        selected = new Employe();
         selectedItemIndex = -1;
         return "Create";
     }
 
     public String create() {
         try {
-            getFacade().create(current);
+            getFacade().create(selected);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EmployeCreated"));
             return prepareCreate();
         } catch (Exception e) {
@@ -136,14 +140,14 @@ public class EmployeController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Employe) getItems().getRowData();
+        selected = (Employe) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
 
     public String update() {
         try {
-            getFacade().edit(current);
+            getFacade().edit(selected);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EmployeUpdated"));
             return "View";
         } catch (Exception e) {
@@ -153,7 +157,7 @@ public class EmployeController implements Serializable {
     }
 
     public String destroy() {
-        current = (Employe) getItems().getRowData();
+        selected = (Employe) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -176,7 +180,7 @@ public class EmployeController implements Serializable {
 
     private void performDestroy() {
         try {
-            getFacade().remove(current);
+            getFacade().remove(selected);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EmployeDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -194,7 +198,7 @@ public class EmployeController implements Serializable {
             }
         }
         if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
+            selected = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
         }
     }
 

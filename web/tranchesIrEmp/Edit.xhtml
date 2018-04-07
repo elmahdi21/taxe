@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TranchesIrEmpEditDlg" widgetVar="TranchesIrEmpEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTranchesIrEmpTitle}">
+            <h:form id="TranchesIrEmpEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tranchesIrEmpController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTranchesIrEmpLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{tranchesIrEmpController.selected.id}" title="#{bundle.EditTranchesIrEmpTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditTranchesIrEmpLabel_employe}" for="employe" />
+                        <p:selectOneMenu id="employe" value="#{tranchesIrEmpController.selected.employe}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{employeController.itemsAvailableSelectOne}"
+                                           var="employeItem"
+                                           itemValue="#{employeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTranchesIrEmpLabel_trancheTrs}" for="trancheTrs" />
+                        <p:inputText id="trancheTrs" value="#{tranchesIrEmpController.selected.trancheTrs}" title="#{bundle.EditTranchesIrEmpTitle_trancheTrs}" />
+                        <p:outputLabel value="#{bundle.EditTranchesIrEmpLabel_morceau}" for="morceau" />
+                        <p:inputText id="morceau" value="#{tranchesIrEmpController.selected.morceau}" title="#{bundle.EditTranchesIrEmpTitle_morceau}" />
+                        <p:outputLabel value="#{bundle.EditTranchesIrEmpLabel_tauxMorceau}" for="tauxMorceau" />
+                        <p:inputText id="tauxMorceau" value="#{tranchesIrEmpController.selected.tauxMorceau}" title="#{bundle.EditTranchesIrEmpTitle_tauxMorceau}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tranchesIrEmpController.update}" value="#{bundle.Save}" update="display,:TranchesIrEmpListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TranchesIrEmpEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TranchesIrEmpEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -7,9 +7,11 @@ package bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -35,9 +37,7 @@ public class Employe implements Serializable {
     private Date dateEmbauche;
     private Double salaireBrute;
     private Double salaireMensuel;
-    private String typeTranche;
-    @ManyToOne
-    private TrancheIr trancheIr;
+
     @ManyToOne
     private Societe societe;
 
@@ -46,6 +46,9 @@ public class Employe implements Serializable {
     @OneToOne(mappedBy = "employe")
     private TaxeIrEmp taxeIrEmp;
 
+    @OneToMany(mappedBy = "employe")
+    private List<TrancheIrEmp> trancheIrEmps;
+
     public Employe() {
     }
 
@@ -53,15 +56,7 @@ public class Employe implements Serializable {
         this.idFiscale = idFiscale;
     }
 
-    public TrancheIr getTrancheIr() {
-        return trancheIr;
-    }
-
-    public void setTrancheIr(TrancheIr trancheIr) {
-        this.trancheIr = trancheIr;
-    }
-
-    public Employe(String idFiscale, Long login, String motDePasse, int droitFiscale, String nom, String pNom, String CIN, String numTele, String email, String profession, Date dateEmbauche, Double salaireBrute, Double salaireMensuel, String typeTranche, TrancheIr trancheIr, Societe societe, CompteBanquaireEmp banquaireEmp, TaxeIrEmp taxeIrEmp) {
+    public Employe(String idFiscale, Long login, String motDePasse, int droitFiscale, String nom, String pNom, String CIN, String numTele, String email, String profession, Date dateEmbauche, Double salaireBrute, Double salaireMensuel, Societe societe, CompteBanquaireEmp banquaireEmp, TaxeIrEmp taxeIrEmp, List<TrancheIrEmp> trancheIrEmps) {
         this.idFiscale = idFiscale;
         this.login = login;
         this.motDePasse = motDePasse;
@@ -75,11 +70,18 @@ public class Employe implements Serializable {
         this.dateEmbauche = dateEmbauche;
         this.salaireBrute = salaireBrute;
         this.salaireMensuel = salaireMensuel;
-        this.typeTranche = typeTranche;
-        this.trancheIr = trancheIr;
         this.societe = societe;
         this.banquaireEmp = banquaireEmp;
         this.taxeIrEmp = taxeIrEmp;
+        this.trancheIrEmps = trancheIrEmps;
+    }
+
+    public List<TrancheIrEmp> getTrancheIrEmps() {
+        return trancheIrEmps;
+    }
+
+    public void setTrancheIrEmps(List<TrancheIrEmp> trancheIrEmps) {
+        this.trancheIrEmps = trancheIrEmps;
     }
 
     public Long getLogin() {
@@ -106,8 +108,6 @@ public class Employe implements Serializable {
         this.droitFiscale = droitFiscale;
     }
 
-   
-
     public Date getDateEmbauche() {
         return dateEmbauche;
     }
@@ -122,14 +122,6 @@ public class Employe implements Serializable {
 
     public void setTaxeIrEmp(TaxeIrEmp taxeIrEmp) {
         this.taxeIrEmp = taxeIrEmp;
-    }
-
-    public String getTypeTranche() {
-        return typeTranche;
-    }
-
-    public void setTypeTranche(String typeTranche) {
-        this.typeTranche = typeTranche;
     }
 
     public Double getSalaireMensuel() {
@@ -245,7 +237,7 @@ public class Employe implements Serializable {
 
     @Override
     public String toString() {
-        return "Employe{" + "idFiscale=" + idFiscale + ", nom=" + nom + ", pNom=" + pNom + ", CIN=" + CIN + ", numTele=" + numTele + ", email=" + email + ", profession=" + profession + ", dateEmbauche=" + dateEmbauche + ", salaireBrute=" + salaireBrute + ", salaireMensuel=" + salaireMensuel + ", typeTranche=" + typeTranche + '}';
+        return "Employe{" + "idFiscale=" + idFiscale + ", login=" + login + ", motDePasse=" + motDePasse + ", droitFiscale=" + droitFiscale + ", nom=" + nom + ", pNom=" + pNom + ", CIN=" + CIN + ", numTele=" + numTele + ", email=" + email + ", profession=" + profession + ", dateEmbauche=" + dateEmbauche + ", salaireBrute=" + salaireBrute + ", salaireMensuel=" + salaireMensuel + '}';
     }
 
 }

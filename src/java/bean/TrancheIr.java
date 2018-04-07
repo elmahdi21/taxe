@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -24,9 +24,10 @@ public class TrancheIr implements Serializable {
     private Double mine;
     private Double maxe;
     private Double taux;
-    @OneToMany(mappedBy = "trancheIr")
-    private List<Employe> employes;
 
+    
+    
+     
     public Double getMine() {
         return mine;
     }
@@ -51,19 +52,6 @@ public class TrancheIr implements Serializable {
         this.taux = taux;
     }
 
-  
-
-    public List<Employe> getEmployes() {
-        return employes;
-    }
-
-    public void setEmployes(List<Employe> employes) {
-        this.employes = employes;
-    }
-    
-    
-     
-
     public String getId() {
         return id;
     }
@@ -85,8 +73,6 @@ public class TrancheIr implements Serializable {
         this.maxe = maxe;
         this.taux = taux;
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -113,6 +99,4 @@ public class TrancheIr implements Serializable {
         return "TrancheIr{" + "id=" + id + ", mine=" + mine + ", maxe=" + maxe + ", taux=" + taux + '}';
     }
 
-   
-    
 }

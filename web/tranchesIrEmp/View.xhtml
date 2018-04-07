@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TranchesIrEmpViewDlg" widgetVar="TranchesIrEmpViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTranchesIrEmpTitle}">
+            <h:form id="TranchesIrEmpViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tranchesIrEmpController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTranchesIrEmpLabel_id}"/>
+                        <h:outputText value="#{tranchesIrEmpController.selected.id}" title="#{bundle.ViewTranchesIrEmpTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewTranchesIrEmpLabel_employe}"/>
+                        <h:outputText value="#{tranchesIrEmpController.selected.employe}" title="#{bundle.ViewTranchesIrEmpTitle_employe}"/>
+                        <h:outputText value="#{bundle.ViewTranchesIrEmpLabel_trancheTrs}"/>
+                        <h:outputText value="#{tranchesIrEmpController.selected.trancheTrs}" title="#{bundle.ViewTranchesIrEmpTitle_trancheTrs}"/>
+                        <h:outputText value="#{bundle.ViewTranchesIrEmpLabel_morceau}"/>
+                        <h:outputText value="#{tranchesIrEmpController.selected.morceau}" title="#{bundle.ViewTranchesIrEmpTitle_morceau}"/>
+                        <h:outputText value="#{bundle.ViewTranchesIrEmpLabel_tauxMorceau}"/>
+                        <h:outputText value="#{tranchesIrEmpController.selected.tauxMorceau}" title="#{bundle.ViewTranchesIrEmpTitle_tauxMorceau}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TranchesIrEmpViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
